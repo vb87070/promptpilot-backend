@@ -3,7 +3,8 @@ const express = require('express');
 const cors = require('cors');
 
 const app = express();
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT 
+|| 4000;
 
 app.use(cors());
 app.use(express.json());
@@ -18,7 +19,7 @@ app.post('/generate-prompt', async (req, res) => {
     if (!user_input) return res.status(400).json({ error: 'user_input is required' });
     const apiKey = process.env.GEMINI_API_KEY;
     if (!apiKey) return res.status(500).json({ error: 'GEMINI_API_KEY not set' });
-    const url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=' + apiKey;
+    const url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=' + apiKey;
     const genRes = await fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
